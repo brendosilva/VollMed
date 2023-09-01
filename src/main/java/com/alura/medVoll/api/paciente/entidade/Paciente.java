@@ -2,14 +2,15 @@ package com.alura.medVoll.api.paciente.entidade;
 
 
 import com.alura.medVoll.api.endereco.entidade.Endereco;
+import com.alura.medVoll.api.paciente.CadastroPaciente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "pacientes")
-@Table(name = "Paciente")
+@Entity(name = "Paciente")
+@Table(name = "pacientes")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +26,12 @@ public class Paciente {
 
    @Embedded
    private Endereco endereco;
+
+   public Paciente(CadastroPaciente dados) {
+      this.nome = dados.nome();
+      this.email = dados.email();
+      this.telefone = dados.telefone();
+      this.cpf = dados.cpf();
+      this.endereco = new Endereco(dados.endereco());
+   }
 }
