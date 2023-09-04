@@ -2,6 +2,7 @@ package com.alura.medVoll.api.medico.entidade;
 
 
 import com.alura.medVoll.api.endereco.entidade.Endereco;
+import com.alura.medVoll.api.medico.AtalizarMedico;
 import com.alura.medVoll.api.medico.CadastroMedico;
 import com.alura.medVoll.api.medico.Especialidade;
 import jakarta.persistence.*;
@@ -30,6 +31,8 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    private Boolean active;
+
 
     public Medico(CadastroMedico dados) {
         this.nome = dados.nome();
@@ -38,5 +41,16 @@ public class Medico {
         this.telefone = dados.telefone();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+        this.active = true;
+    }
+
+    public void atualizarInfo(AtalizarMedico atualizarMedicos) {
+       if (atualizarMedicos.nome() != null) this.nome = atualizarMedicos.nome();
+       if(atualizarMedicos.telefone() != null) this.telefone = atualizarMedicos.telefone();
+       if (atualizarMedicos.endereco() != null) this.endereco.atualizarEndereco(atualizarMedicos.endereco());
+    }
+
+    public void excluir() {
+        this.active = false;
     }
 }
