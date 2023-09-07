@@ -1,11 +1,8 @@
-package com.alura.medVoll.api.endereco.entidade;
+package com.alura.medVoll.api.domain.endereco.entidade;
 
-import com.alura.medVoll.api.endereco.DadosEndereco;
+import com.alura.medVoll.api.domain.endereco.DadosEndereco;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

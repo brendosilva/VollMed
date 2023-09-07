@@ -1,12 +1,11 @@
 package com.alura.medVoll.api.controllers;
 
-import com.alura.medVoll.api.medico.DetalhamentoMedico;
-import com.alura.medVoll.api.paciente.AtualizarPaciente;
-import com.alura.medVoll.api.paciente.CadastroPaciente;
-import com.alura.medVoll.api.paciente.DetalhamentoPaciente;
-import com.alura.medVoll.api.paciente.ListagemPaciente;
-import com.alura.medVoll.api.paciente.entidade.Paciente;
-import com.alura.medVoll.api.paciente.repositories.PacienteRepository;
+import com.alura.medVoll.api.domain.paciente.AtualizarPaciente;
+import com.alura.medVoll.api.domain.paciente.CadastroPaciente;
+import com.alura.medVoll.api.domain.paciente.DetalhamentoPaciente;
+import com.alura.medVoll.api.domain.paciente.ListagemPaciente;
+import com.alura.medVoll.api.domain.paciente.entidade.Paciente;
+import com.alura.medVoll.api.domain.paciente.repositories.PacienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")

@@ -1,6 +1,6 @@
-package com.alura.medVoll.api.paciente;
+package com.alura.medVoll.api.domain.paciente;
 
-import com.alura.medVoll.api.endereco.DadosEndereco;
+import com.alura.medVoll.api.domain.endereco.DadosEndereco;
 import jakarta.validation.constraints.NotNull;
 
 public record AtualizarPaciente(

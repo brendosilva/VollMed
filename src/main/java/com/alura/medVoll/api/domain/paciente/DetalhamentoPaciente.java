@@ -1,7 +1,7 @@
-package com.alura.medVoll.api.paciente;
+package com.alura.medVoll.api.domain.paciente;
 
-import com.alura.medVoll.api.endereco.entidade.Endereco;
-import com.alura.medVoll.api.paciente.entidade.Paciente;
+import com.alura.medVoll.api.domain.paciente.entidade.Paciente;
+import com.alura.medVoll.api.domain.endereco.entidade.Endereco;
 
 public record DetalhamentoPaciente(
         Long id, String nome, String email, String telefone, String cpf, Endereco endereco

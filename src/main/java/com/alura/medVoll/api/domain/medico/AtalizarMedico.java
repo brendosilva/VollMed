@@ -1,7 +1,6 @@
-package com.alura.medVoll.api.medico;
+package com.alura.medVoll.api.domain.medico;
 
-import com.alura.medVoll.api.endereco.DadosEndereco;
-import jakarta.validation.constraints.NotBlank;
+import com.alura.medVoll.api.domain.endereco.DadosEndereco;
 import jakarta.validation.constraints.NotNull;
 
 public record AtalizarMedico(

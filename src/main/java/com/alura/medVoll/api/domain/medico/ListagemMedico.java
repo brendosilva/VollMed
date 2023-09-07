@@ -1,6 +1,6 @@
-package com.alura.medVoll.api.medico;
+package com.alura.medVoll.api.domain.medico;
 
-import com.alura.medVoll.api.medico.entidade.Medico;
+import com.alura.medVoll.api.domain.medico.entidade.Medico;
 
 public record ListagemMedico(
         Long id,

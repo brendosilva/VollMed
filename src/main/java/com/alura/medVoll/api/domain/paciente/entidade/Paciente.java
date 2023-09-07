@@ -1,9 +1,9 @@
-package com.alura.medVoll.api.paciente.entidade;
+package com.alura.medVoll.api.domain.paciente.entidade;
 
 
-import com.alura.medVoll.api.endereco.entidade.Endereco;
-import com.alura.medVoll.api.paciente.AtualizarPaciente;
-import com.alura.medVoll.api.paciente.CadastroPaciente;
+import com.alura.medVoll.api.domain.paciente.AtualizarPaciente;
+import com.alura.medVoll.api.domain.paciente.CadastroPaciente;
+import com.alura.medVoll.api.domain.endereco.entidade.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

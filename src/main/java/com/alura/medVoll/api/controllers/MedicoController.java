@@ -1,12 +1,11 @@
 package com.alura.medVoll.api.controllers;
 
-import com.alura.medVoll.api.endereco.entidade.Endereco;
-import com.alura.medVoll.api.medico.AtalizarMedico;
-import com.alura.medVoll.api.medico.CadastroMedico;
-import com.alura.medVoll.api.medico.DetalhamentoMedico;
-import com.alura.medVoll.api.medico.ListagemMedico;
-import com.alura.medVoll.api.medico.entidade.Medico;
-import com.alura.medVoll.api.medico.repositories.MedicoRepository;
+import com.alura.medVoll.api.domain.medico.AtalizarMedico;
+import com.alura.medVoll.api.domain.medico.CadastroMedico;
+import com.alura.medVoll.api.domain.medico.DetalhamentoMedico;
+import com.alura.medVoll.api.domain.medico.ListagemMedico;
+import com.alura.medVoll.api.domain.medico.entidade.Medico;
+import com.alura.medVoll.api.domain.medico.repositories.MedicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/medicos")
@@ -37,16 +34,13 @@ public class MedicoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DetalhamentoMedico> getMedico(@PathVariable  final Long id) {
-        return ResponseEntity.ok(new DetalhamentoMedico(repository.findById(id).get()));
+        return ResponseEntity.ok(new DetalhamentoMedico(repository.getReferenceById(id)));
     }
-
-
     @GetMapping
     public ResponseEntity<Page<ListagemMedico>> listagem(Pageable pageable) {
         var page = repository.findAllByActiveTrue(pageable).map(ListagemMedico::new);
         return ResponseEntity.ok(page);
     }
-
     @PutMapping
     @Transactional
     public ResponseEntity<DetalhamentoMedico> atualizacao(@RequestBody @Valid AtalizarMedico atualizarMedicos) {
