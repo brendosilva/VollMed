@@ -1,5 +1,6 @@
 package com.alura.medVoll.api.domain.consulta.entidade;
 
+import com.alura.medVoll.api.domain.consulta.MotivoCancelamento;
 import com.alura.medVoll.api.domain.medico.entidade.Medico;
 import com.alura.medVoll.api.domain.paciente.entidade.Paciente;
 import jakarta.persistence.*;
@@ -29,4 +30,12 @@ public class Consulta {
     private Paciente paciente;
 
     private LocalDateTime data;
+
+    @Column(name = "motivo_cancelamento")
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamento motivoCancelamento;
+
+    public void cancelar(MotivoCancelamento motivo) {
+        this.motivoCancelamento = motivo;
+    }
 }

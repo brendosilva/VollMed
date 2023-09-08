@@ -1,6 +1,7 @@
 package com.alura.medVoll.api.domain.consulta.services;
 
 import com.alura.medVoll.api.domain.consulta.AgendamentoConsulta;
+import com.alura.medVoll.api.domain.consulta.DadosCancelamentoConsulta;
 import com.alura.medVoll.api.domain.consulta.entidade.Consulta;
 import com.alura.medVoll.api.domain.consulta.repositories.ConsultaRepository;
 import com.alura.medVoll.api.domain.exceptions.ValidacaoException;
@@ -30,10 +31,19 @@ public class AgendaConsultaService {
 
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
         var medico = medicoRepository.findById(dados.idMedico()).get();
-        var consulta = new Consulta(null, medico, paciente, dados.data());
+        var consulta = new Consulta(null, medico, paciente, dados.data(), null);
 
 
         repository.save(consulta);
+    }
+
+    public void cancelar(DadosCancelamentoConsulta dados) {
+        if (!repository.existsById(dados.idConsulta())) {
+            throw new ValidacaoException("Id da consulta informado não existe!");
+        }
+
+        var consulta = repository.getReferenceById(dados.idConsulta());
+        consulta.cancelar(dados.motivo());
     }
 
     private Medico escolherMedico(AgendamentoConsulta dados){
