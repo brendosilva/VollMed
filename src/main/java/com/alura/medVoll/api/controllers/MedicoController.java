@@ -6,6 +6,7 @@ import com.alura.medVoll.api.domain.medico.DetalhamentoMedico;
 import com.alura.medVoll.api.domain.medico.ListagemMedico;
 import com.alura.medVoll.api.domain.medico.entidade.Medico;
 import com.alura.medVoll.api.domain.medico.repositories.MedicoRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
     @Autowired
     private MedicoRepository repository;

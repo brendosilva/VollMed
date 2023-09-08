@@ -4,6 +4,7 @@ import com.alura.medVoll.api.domain.consulta.AgendamentoConsulta;
 import com.alura.medVoll.api.domain.consulta.DadosCancelamentoConsulta;
 import com.alura.medVoll.api.domain.consulta.DadosDetalhamentoConsulta;
 import com.alura.medVoll.api.domain.consulta.services.AgendaConsultaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultaController {
 
     @Autowired
