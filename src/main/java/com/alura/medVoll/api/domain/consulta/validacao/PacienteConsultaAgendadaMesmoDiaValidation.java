@@ -15,7 +15,7 @@ public class PacienteConsultaAgendadaMesmoDiaValidation implements  ValidationAg
     public void valida(AgendamentoConsulta dados){
         var primeiroHorario = dados.data().withHour(7);
         var ultimoHorario = dados.data().withHour(18);
-        var pacientePossuiConsultaNoMesmoDia =  repository.existsByMedicoIdAndDataBetwen(dados.idPaciente(),primeiroHorario,ultimoHorario);
+        var pacientePossuiConsultaNoMesmoDia =  repository.existsByMedicoIdAndDataBetween(dados.idPaciente(),primeiroHorario,ultimoHorario);
         if (pacientePossuiConsultaNoMesmoDia) {
             throw new ValidacaoException("Você já possui consulta agendada no mesmo dia");
         }

@@ -12,12 +12,12 @@ public class PacienteActiveValidation implements  ValidationAgendamentoConsulta 
     @Autowired
     private PacienteRepository repository;
     public void valida(AgendamentoConsulta dados){
-        if (dados.idMedico() == null) {
+        if (dados.idPaciente() == null) {
             return;
         }
 
-        var medicoIsActive = repository.findActiveById(dados.idMedico());
-        if (!medicoIsActive) {
+        var pacienteIsActive = repository.findActiveById(dados.idPaciente());
+        if (!pacienteIsActive) {
             throw new ValidacaoException("Consulta não pode ser agendado, pois paciente não esta ativo");
         }
     }

@@ -1,5 +1,6 @@
 package com.alura.medVoll.api.domain.consulta;
 
+import com.alura.medVoll.api.domain.consulta.entidade.Consulta;
 import com.alura.medVoll.api.domain.medico.Especialidade;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
@@ -18,4 +19,5 @@ public record AgendamentoConsulta(
         @Future
         LocalDateTime data
 ) {
+
 }

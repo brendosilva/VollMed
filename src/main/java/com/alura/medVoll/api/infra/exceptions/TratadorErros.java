@@ -1,5 +1,6 @@
 package com.alura.medVoll.api.infra.exceptions;
 
+import com.alura.medVoll.api.domain.exceptions.ValidacaoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +22,11 @@ public class TratadorErros {
         return ResponseEntity.badRequest().body(
                 errors.stream().map(DadosErroValidacao::new).toList()
         );
+    }
+
+    @ExceptionHandler(ValidacaoException.class)
+    public ResponseEntity trataErrorRegraDeNegocio(ValidacaoException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     private record DadosErroValidacao(String campo, String message)     {
