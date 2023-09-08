@@ -4,12 +4,15 @@ import com.alura.medVoll.api.domain.consulta.AgendamentoConsulta;
 import com.alura.medVoll.api.domain.consulta.DadosCancelamentoConsulta;
 import com.alura.medVoll.api.domain.consulta.entidade.Consulta;
 import com.alura.medVoll.api.domain.consulta.repositories.ConsultaRepository;
+import com.alura.medVoll.api.domain.consulta.validacao.ValidationAgendamentoConsulta;
 import com.alura.medVoll.api.domain.exceptions.ValidacaoException;
 import com.alura.medVoll.api.domain.medico.entidade.Medico;
 import com.alura.medVoll.api.domain.medico.repositories.MedicoRepository;
 import com.alura.medVoll.api.domain.paciente.repositories.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AgendaConsultaService {
@@ -20,6 +23,9 @@ public class AgendaConsultaService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
+    @Autowired
+    private List<ValidationAgendamentoConsulta> validadores;
+
     public void agendar(AgendamentoConsulta dados) {
         if (dados.idMedico() != null && !medicoRepository.existsById(dados.idMedico())) {
             throw new ValidacaoException("id medico informado não existe");
@@ -28,6 +34,8 @@ public class AgendaConsultaService {
         if (!pacienteRepository.existsById(dados.idPaciente())) {
             throw new ValidacaoException("id paciente informado não existe");
         }
+
+        validadores.forEach(v -> v.valida(dados));
 
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
         var medico = medicoRepository.findById(dados.idMedico()).get();
